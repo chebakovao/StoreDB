@@ -1,0 +1,45 @@
+﻿<Window x:Class="OnlineStoreDB.View.EmployeeWindow"
+        xmlns:lvc="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:OnlineStoreDB.View"
+        mc:Ignorable="d"
+        Title="EmployeeWindow" Height="500" Width="800"
+        WindowStartupLocation="CenterScreen">
+    <Window.Background>
+        <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+            <GradientStop Offset="0" Color="#FF2D2D2D"/>
+            <GradientStop Offset="1" Color="#FF4D4D4D"/>
+        </LinearGradientBrush>
+    </Window.Background>
+    <Grid Margin="0,0,0,5">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="45*"/>
+            <ColumnDefinition Width="258*"/>
+            <ColumnDefinition Width="97*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto" MaxHeight="250" MinHeight="246"/>
+            <RowDefinition Height="auto" MinHeight="204"/>
+        </Grid.RowDefinitions>
+        <ComboBox Width="50" HorizontalAlignment="Left" ItemsSource="{Binding OrderOffices}" SelectedItem="{Binding SelectedOffice}" Margin="10,15,0,15" Grid.Column="0"/>
+        <TextBlock Text="Search:" Grid.Column="1" VerticalAlignment="Center" Height="16" Foreground="White"/>
+        <TextBox Text="{Binding SearchQuery, UpdateSourceTrigger=PropertyChanged}" Grid.Column="1" Grid.Row="0" Margin="48,17,318,13" Background="#FF4D4D4D" BorderThickness="1" BorderBrush="#FF808080" Foreground="White"/>
+        <DataGrid ItemsSource="{Binding FilteredOrders}" MaxHeight="250"  AutoGenerateColumns="true" Grid.Row="1" Margin="0,0,0,3" SelectedItem="{Binding SelectedOrder, Mode=TwoWay}" Grid.ColumnSpan="3" Grid.RowSpan="2"/>
+        <Button Grid.Column="2" Content="Mark As Completed" Command="{Binding MarkAsDoneCommand}" Margin="0,10,10,0" Background="#FF007ACC" Foreground="White" BorderThickness="0"/>
+
+
+        <lvc:CartesianChart Series="{Binding SeriesCollection}" Height="170" BorderBrush="Black" BorderThickness="2"  Margin="48,10,10,144" Grid.Row="3" Background="white" Grid.Column="1">
+            <lvc:CartesianChart.AxisX>
+                <lvc:Axis Title="Date" Labels="{Binding Labels}"/>
+            </lvc:CartesianChart.AxisX>
+            <lvc:CartesianChart.AxisY>
+                <lvc:Axis Title="Amount of Orders"/>
+            </lvc:CartesianChart.AxisY>
+        </lvc:CartesianChart>
+    </Grid>
+</Window>
