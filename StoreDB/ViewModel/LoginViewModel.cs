@@ -25,6 +25,7 @@ namespace OnlineStoreDB.ViewModel
             OpenSignUpCommand = new RelayCommand(OpenSignUp);
             LoginCommand = new RelayCommand(Login);
             OpenGuestCommand = new RelayCommand(OpenGuest);
+            ApplicationContextDB.getInstance();
         }
 
         private void OpenSignUp(object obj)
